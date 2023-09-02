@@ -128,3 +128,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+dataset_process/male_players.csv
+dataset_process/fifa.db
