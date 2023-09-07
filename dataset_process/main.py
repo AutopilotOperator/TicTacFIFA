@@ -29,8 +29,11 @@ def read_csv():
                 # print(cell)
                 arr.append(str(cell))
             arr[0] = int(arr[0])
+            arr.insert(0, str(arr[0]) + str(arr[2]) + str(arr[3]))
+
             try:
-                if (str(arr[2]) != '23'):
+                if (str(arr[3]) != '23'):
+                    print('Not 23!')
                     continue
                 cursor.execute(insert_query, tuple(arr))
             except sqlite3.Error as err:
@@ -42,10 +45,11 @@ def read_csv():
 
 create_table_query = '''
 CREATE TABLE IF NOT EXISTS FIFA (
-    player_id INTEGER PRIMARY KEY,
+    id TEXT PRIMARY KEY,
+    player_id INTEGER ,
     player_url TEXT,
-    fifa_version TEXT,
-    fifa_update TEXT,
+    fifa_version TEXT ,
+    fifa_update TEXT ,
     fifa_update_date TEXT,
     short_name TEXT,
     long_name TEXT,
@@ -155,10 +159,11 @@ CREATE TABLE IF NOT EXISTS FIFA (
 );
 '''
 
-long_string = ",".join(['?' for i in range(0,110)])
+long_string = ",".join(['?' for i in range(0,111)])
 
 insert_query = f'''
 INSERT INTO FIFA (
+    id,
     player_id,
     player_url,fifa_version,fifa_update,fifa_update_date,short_name,long_name,player_positions,overall,potential,value_eur,wage_eur,age,dob,height_cm,weight_kg,league_id,league_name,
     league_level,club_team_id,club_name,club_position,club_jersey_number,club_loaned_from,club_joined_date,club_contract_valid_until_year,nationality_id,nationality_name,nation_team_id,nation_position,nation_jersey_number,preferred_foot,weak_foot,skill_moves,international_reputation,work_rate,body_type,real_face,release_clause_eur,player_tags,player_traits,pace,

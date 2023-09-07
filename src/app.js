@@ -1,11 +1,16 @@
 import express from "express";
 import dotenv from 'dotenv'
+import { router } from "./routes/general.js";
 dotenv.config()
 
 const app = express();
+
+app.use('/general', router)
+
 app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
+
 
 const port = 3000;
 
