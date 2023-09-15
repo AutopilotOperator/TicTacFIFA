@@ -5,10 +5,18 @@ dotenv.config()
 
 const app = express();
 
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+  next();
+});
+
 app.use('/general', router)
+
+
 
 app.get('/', (req, res) => {
   res.send('Hello, World!');
+  
 });
 
 

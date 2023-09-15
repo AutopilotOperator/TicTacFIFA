@@ -2,7 +2,7 @@ import { open } from "sqlite";
 import sqlite3 from "sqlite3";
 
 
-export async function testSelect() {
+export const testSelect = async () => {
     try {
         const db = await open({
             filename: './src/models/fifa.db',
@@ -21,3 +21,18 @@ export async function testSelect() {
     }
 }
 
+
+export const selectAllPlayers = async () => {
+    try {
+        const db = await open({
+            filename: './src/models/fifa.db',
+            driver: sqlite3.Database
+        })
+        const result = await db.all("Select player_id, short_name, long_name from FIFA where fifa_update='9'");
+        await db.close()
+        return result;
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+}
