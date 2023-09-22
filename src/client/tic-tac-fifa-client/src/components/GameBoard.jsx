@@ -7,20 +7,24 @@ import SideGridItem from "./SideGridItem";
 const rowDivStyle = {
     display: 'flex',
     flexDirection: 'row',
-    width: '50vw'
+    width: 'fit-content'
 }
 
 export default function GameBoard() {
 
     const [fieldConfig, setFieldConfig] = useState({
-        rows: ['1', '2', '3'],
-        columns: ['4', '5', '6']
+        rows: ['CB', '84', 'ST'],
+        columns: ['Premier League', 'England', 'La Liga']
     })
 
     const generateBoardItems = () => {
         const rowArr = [];
         let columnArr = [];
-        columnArr.push(<div>Fifa Grid</div>)
+        columnArr.push(<div style={{
+            backgroundColor: '#076B00',
+            width: '15vh',
+            height: '15vh',
+        }}>Fifa Grid</div>)
         for (let i = 0; i < 3; i++) {
             columnArr.push(<SideGridItem key={i} value={fieldConfig.columns[i]}/>)
         }
